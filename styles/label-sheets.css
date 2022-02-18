@@ -1,0 +1,40 @@
+body {
+  width: 8.5in;
+  margin: 0in .1875in;
+}
+
+  /* Avery 5160 labels */
+.label {
+  width: 2.025in;
+  height: .89in;
+  padding: .125in .3in 0;
+  margin-right: .2in;
+  float: left;
+  text-align: center;
+  overflow: hidden;
+  outline: 1px dotted;
+  font-family: 'Ubuntu Mono', monospace;
+  font-size: 18px;
+}
+
+.page-break {
+  clear: left;
+  display: block;
+  page-break-after: always;
+}
+
+@page {
+  margin: 0.50in 0px 0px 0px;
+}
+
+@media print {
+  .label {
+    outline: none !important;
+  }
+}
+
+.barcode {
+  font-family: 'Libre Barcode 128 Text', cursive;
+  font-size: 52px;
+  line-height: 125%;
+}
