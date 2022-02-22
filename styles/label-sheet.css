@@ -38,3 +38,14 @@ body {
   font-size: 52px;
   line-height: 125%;
 }
+
+/* css for asset labels */
+.assetBarcode {
+  font-family: 'Libre Barcode 128 Text', cursive;
+  font-size: 40px;
+  line-height: 115%;
+}
+
+.dontCover {
+  font-size: 12px;
+}
