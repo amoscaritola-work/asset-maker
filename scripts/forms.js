@@ -13,10 +13,13 @@ function updateLabelCount(currentRowCount) {
 }
 
 // Warn if too many labels for sheet
-function labelCountCheck(){
+function labelCountCheck(addAlert){
   let currentRowCount = Number(updateRowCount());
   let selectedStartingLabel = Number($('.startingLabel').val());
   if (currentRowCount + selectedStartingLabel > 31) {
+    if (addAlert) {
+      alert("You assigned more labels than available! Either remove some labels or lower your starting label");
+    }
     $(".labelCount").removeClass("bg-success").addClass("bg-danger");
   } else {
     $(".labelCount").removeClass("bg-danger").addClass("bg-success");
@@ -25,7 +28,7 @@ function labelCountCheck(){
 
 // Update label count when selecting starting label
 $('.startingLabel').on('change', function() {
-  labelCountCheck();
+  labelCountCheck(true);
 });
 
 // Click button to delete row
@@ -33,7 +36,7 @@ $('.formTable').on('click', '.btnDelete', function() {
   $(this).closest('tr').remove();
   let currentRowCount = updateRowCount();
   updateLabelCount(currentRowCount);
-  labelCountCheck();
+  labelCountCheck(false);
 });
 
 // Do Stuff if we're on the student label form
@@ -51,7 +54,7 @@ if ( document.URL.includes("student-form.html") ) {
     if (currentRowCount < 30) {
       $(".userBody").append(rowToAdd);
       updateLabelCount(currentRowCount + 1);
-      labelCountCheck();
+      labelCountCheck(true);
     }
   });
 
@@ -78,14 +81,14 @@ if ( document.URL.includes("asset-form.html") ) {
     let rowToAdd = `<tr>
       <td><input type="text" class="form-control assetId" placeholder="" name="" value="" required></td>
       <td>
-        <button class="btn btn-md btn-danger btn-block btnDelete" type="button"><i class="bi bi-person-x-fill"></i></button>
+        <button class="btn btn-md btn-danger btn-block btnDelete" type="button"><i class="bi bi-file-earmark-minus-fill"></i></button>
       </td>
     </tr>`;
     // Append row.. don't allow more than 30 rows
     if (currentRowCount < 30) {
       $(".userBody").append(rowToAdd);
       updateLabelCount(currentRowCount + 1);
-      labelCountCheck();
+      labelCountCheck(true);
     }
   });
 

@@ -6,3 +6,21 @@
   width: 75%;
   margin-top: 25px;
 }
+
+.bottom-container {
+  text-align: center;
+  margin-bottom: 0;
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+
+.copyright {
+  padding: 20px 0;
+  color: gray;
+  font-size: 0.75rem;
+}
+
+.index-container {
+  margin-top: 50px;
+  text-align: center;
+}
