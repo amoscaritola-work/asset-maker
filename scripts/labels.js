@@ -12,7 +12,7 @@ $(document).ready(function() {
     // Loop to append all the labels and ID them 1-30
     for (var i = 1; i < 31; i++) {
       var labelId = '<div id="label' + i + '" class="label">'
-      $(".addLabels").append(labelId + '<span class="stuName"></span><br><span class="barcode"></span></div>');
+      $(".addLabels").append(labelId + '<span class="stuName"></span><br><svg class="barcode"></svg></div>');
     }
     // Check that more labels weren't assigned than available
     if (labelData.length + Number(startingLabel) > 31) {
@@ -25,8 +25,12 @@ $(document).ready(function() {
           let studentName = labelData[i][0];
           let studentId = labelData[i][1];
           $('#label' + labelNumber + ' span.stuName').text(studentName);
-          $('#label' + labelNumber + ' span.barcode').text(studentId);
-
+          JsBarcode('#label' + labelNumber + ' svg.barcode', studentId, {
+            height: 30,
+            width: 1.5,
+            fontSize: 16,
+            marginTop: 3
+          });
         } else if (labelType == "asset") {
           console.log("asset label");
         }
@@ -37,7 +41,7 @@ $(document).ready(function() {
     // Loop to append all the labels and ID them 1-30
     for (var i = 1; i < 31; i++) {
       var labelId = '<div id="label' + i + '" class="label">'
-      $(".addLabels").append(labelId + '<span class="npsTag"></span><br><span class="assetBarcode"></span><br><span class="dontCover"></span></div>');
+      $(".addLabels").append(labelId + '<span class="npsTag"></span><br><svg class="assetBarcode"></svg><br><span class="dontCover"></span></div>');
     }
     // Check that more labels weren't assigned than available
     if (labelData.length + Number(startingLabel) > 31) {
@@ -46,9 +50,15 @@ $(document).ready(function() {
       for (var i = 0; i < labelData.length; i++) {
         if (labelData != "") {
           labelNumber = Number(startingLabel) + i;
-          $('#label' + labelNumber + ' span.assetBarcode').text(labelData[i]);
           $('#label' + labelNumber + ' span.npsTag').text("Nutley Public Schools");
           $('#label' + labelNumber + ' span.dontCover').text("DO NOT COVER OR REMOVE");
+          JsBarcode('#label' + labelNumber + ' svg.assetBarcode', labelData[i], {
+            height: 25,
+            width: 1,
+            fontSize: 16,
+            textPosition: "top",
+            marginTop: 1
+          });
         }
       }
     }

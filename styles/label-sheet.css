@@ -3,7 +3,7 @@ body {
   margin: 0in .1875in;
 }
 
-  /* Avery 5160 labels */
+/* Avery 5160 labels */
 .label {
   width: 2.025in;
   height: .89in;
@@ -33,19 +33,9 @@ body {
   }
 }
 
-.barcode {
-  font-family: 'Libre Barcode 128 Text', cursive;
-  font-size: 52px;
-  line-height: 125%;
-}
-
-/* css for asset labels */
-.assetBarcode {
-  font-family: 'Libre Barcode 128 Text', cursive;
-  font-size: 40px;
-  line-height: 115%;
-}
-
 .dontCover {
   font-size: 12px;
+  position: relative;
+  top: -16px;
+  left: 3px;
 }
