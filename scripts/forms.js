@@ -39,13 +39,13 @@ $('.formTable').on('click', '.btnDelete', function() {
   labelCountCheck(false);
 });
 
-// Do Stuff if we're on the student label form
-if ( document.URL.includes("student-form.html") ) {
+// Do Stuff if we're on the student/staff label form
+if (document.URL.includes("student-form.html") || document.URL.includes("staff-form.html") ) {
   $(".add-row").on('click', function() {
     let currentRowCount = updateRowCount();
     let rowToAdd = `<tr>
-        <td><input type="text" class="form-control stuName" name="" value="" required></td>
-        <td><input type="text" class="form-control stuID" name="" value="" required></td>
+        <td><input type="text" class="form-control userName" name="" value="" required></td>
+        <td><input type="text" class="form-control userId" name="" value="" required></td>
         <td>
           <button class="btn btn-md btn-danger btn-block btnDelete" type="button"><i class="bi bi-person-x-fill"></i></button>
         </td>
@@ -63,14 +63,19 @@ if ( document.URL.includes("student-form.html") ) {
     localStorage.clear(); // Clear any local stored data
     let studentData = []; //store the data as list in lists.
     $(".userBody").find('tr').each(function() {
-      let stuName = $(this).find('.stuName').val();
-      let stuID = $(this).find('.stuID').val();
-      studentData.push([stuName, stuID]);
+      let userName = $(this).find('.userName').val();
+      let userId = $(this).find('.userId').val();
+      studentData.push([userName, userId]);
     });
     let startingLabel = $('.startingLabel').find(":selected").val();
-    localStorage.setItem("labelType", "student"); // set label form for student
     localStorage.setItem("labelData", JSON.stringify(studentData));
     localStorage.setItem("startingLabel", startingLabel);
+    
+    if (document.URL.includes("staff-form.html")) {
+      localStorage.setItem("labelType", "staff");
+    } else if (document.URL.includes("student-form.html")) {
+      localStorage.setItem("labelType", "student");
+    }
   });
 }
 
